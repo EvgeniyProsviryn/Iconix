@@ -1,0 +1,612 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+
+html, body
+	height: 100%
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.75
+	font-family: $default-font
+	
+	opacity: 1
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+
+*
+	outline: 0px solid red
+
+.header
+	height: 600px
+	width: 100%
+	background-image: url('../img/header2.jpg')
+	background-repeat: no-repeat
+	background-size: cover
+	position: relative
+	display: flex
+	justify-content: center
+	align-items: center
+	&:after
+		content: ""
+		position: absolute
+		left: 0
+		top: 0
+		width: 100%
+		height: inherit
+		background-color: rgba(#333,.98)
+		z-index: 10
+
+.header-nav
+	height: 70px
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	z-index: 14
+	display: flex
+	align-items: center
+	a
+		color: white
+		text-decoration: none
+	.logo
+		color: white
+		font-family: rainbow
+		font-size: 40px
+		margin-left: 40px
+	.login
+		position: absolute
+		right: 40px
+		cursor: pointer
+		transition: .5s ease
+		&:hover
+			opacity: 1
+			transform: rotate(20deg)
+	.collection
+		position: absolute
+		right: 90px
+		.collection-block
+			width: 260px
+			height: 400px
+			position: absolute
+			background: rgba(white,.98)
+			left: -180px
+			top: 50px
+			display: none
+			box-shadow: 0px 0px 5px white
+			border-radius: 3px
+			overflow-y: scroll
+			.coll-box
+				height: 150px
+				border-bottom: 2px dashed #ccc
+				display: flex
+				justify-content: center
+				align-items: center
+			.zip
+				color: white
+				text-align: center
+				background: #a9fd00
+				cursor: pointer
+				padding: 5px 15px 5px 15px
+				border-radius: 3px 
+				margin-top: 15px
+				font-family: raleway
+				margin-left: 15px
+				margin-right: 15px
+				margin-bottom: 20px
+		.collection-count
+			position: absolute
+			color: #a9fd00
+			font-family: raleway
+			bottom: -15px
+			right: -7px
+			font-size: 12px
+			cursor: default
+
+.cntr-text
+	display: table
+	position: relative
+	z-index: 13
+	color: white
+	font-size: 30px
+	text-align: center
+	font-family: raleway
+	
+.iconix-text
+	padding: 15px
+
+.search
+	color: #4C5B5C
+	max-width: 270px
+	border: none
+	border-radius: 3px
+	padding-left: 15px
+	padding-right: 70px
+	font-size: 28px
+	margin-top: 20px
+	margin-left: -20px
+	
+.search-logo
+	margin-left: -50px
+
+.content-title
+	text-align: center
+	font-size: 28px
+	margin-top: 25px
+	font-family: raleway
+
+.box
+	border: 2px dashed #ccc
+	height: 150px
+	cursor: pointer
+	margin-top: 20px
+	position: relative
+	overflow: hidden
+	display: flex
+	justify-content: center
+	align-items: center
+	transition: all .5s ease
+	.inner-box
+		width: 30px
+		height: 30px
+		border: 2px dashed #ccc
+		border-radius: 50%
+		text-align: center
+		color: #a9fd00
+		font-weight: bold
+		font-size: 14px
+		padding-top: 0px
+		position: absolute
+		right: 15px
+		top: 10px
+		opacity: 0
+		transition: .5s ease
+		text-shadow: 0px 0px 1px #333
+		background: white
+
+	&:hover .inner-box
+		opacity: 1
+		border: 2px dashed #333
+
+	&:hover
+		border: 2px dashed #333
+
+.collect
+	flex-wrap: wrap
+
+.latest
+	padding-bottom: 40px
+	a
+		text-decoration: none
+		&:visited
+			text-decoration: none
+
+.next-button
+	padding: 10px 10px 10px 10px
+	min-width: 200px
+	display: inline-block
+	cursor: pointer
+	margin-top: 40px
+	border-radius: 3px
+	font-weight: bold
+	text-align: center
+
+.next-button
+	background: #a9fd00
+
+.navigation
+	display: flex
+	justify-content: center
+	margin-bottom: 50px
+
+.category-text
+	text-align: center
+	font-size: 28px
+	font-family: raleway
+	position: relative
+	z-index: 11
+	margin-top: 25px
+
+.categories
+	background: url("../img/category.jpg") no-repeat
+	background-size: cover
+	position: relative
+	color: white
+	padding-bottom: 50px
+	&:after
+		content: ""
+		width: 100%
+		height: 100%
+		position: absolute
+		background: rgba(#006df0,.96)
+		top: 0
+		left: 0
+		z-index: 10
+
+.category-box
+	border: 2px dashed white
+	height: 200px
+	position: relative
+	z-index: 11
+	margin-top: 25px
+	cursor: pointer
+	overflow: hidden
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-wrap: wrap
+	padding-bottom: 40px
+	transition: all .5s ease
+	&:hover
+		box-shadow: 0px 0px 4px white
+	&:hover .catbox-inner
+		box-shadow: 0px 0px 4px white
+
+.catbox-inner
+	text-align: center
+	width: 100%
+	position: absolute
+	border: 2px dashed white
+	bottom: 0
+	left: 0
+	border-bottom: 0px
+	border-left: 0px
+	border-right: 0px
+	line-height: 35px
+	transition: all .5s ease
+	font-weight: bold
+	font-family: raleway
+	color: white
+
+.most-popular
+	margin-bottom: 30px
+
+.popular-text
+	font-size: 28px
+	text-align: center
+	margin-top: 25px
+	font-family: raleway
+
+.footer
+	background: #4C5B5C
+	display: flex
+	justify-content: center
+	.footer-content
+		display: flex
+		justify-content: center
+		align-items: center
+		width: 160px
+		flex-wrap: wrap
+		margin-bottom: 15px
+		.logo
+			color: white
+			font-family: rainbow
+			font-size: 60px
+		img
+			margin: 10px
+		span.copy
+			text-align: center
+			font-size: 12px
+			color: white
+			font-weight: bold
+
+#test-form,#test-form2
+	text-align: center
+	ol
+		list-style: none
+		padding: 0
+		li
+			margin-top: 15px
+			a
+				color: white
+				text-decoration: none
+			
+			input
+				padding: 5px 10px
+				border: none
+				border-radius: 3px
+			.submit,.register
+				background: #a9fd00
+				border: none
+				border-radius: 3px
+				padding: 5px 25px
+				margin-top: 15px
+				margin: 5px
+			.register
+				background: rgba(0,109,240,.96)
+
+.mfp-container
+	background: rgba(#333,.8)
+	color: white
+	position: fixed
+
+.mfp-close-btn-in .mfp-close
+	color: white
+	position: absolute
+	top: 0px
+	right: 20px
+	font-size: 48px
+
+button.mfp-arrow, button.mfp-close
+	position: fixed
+
+.dialog-svg
+	display: flex
+	justify-content: center
+
+.dialog-contain
+	background: white
+	padding-top: 40px
+	padding-bottom: 50px
+	padding-left: 50px
+	padding-right: 50px
+
+
+.dialog-collect,.dialog-download
+	display: flex
+	justify-content: center
+
+.addto,.downl
+	color: #333
+	font-family: raleway
+	background: #a9fd00
+	padding: 5px 15px
+	border-radius: 3px
+	display: block
+	text-align: center
+	position: relative
+	float: left
+	margin-top: 25px
+	cursor: pointer
+
+.unactive
+	background: #ccc
+	box-shadow: 0px 0px 2px #333 inset
+
+.downl
+	background: rgba(0,109,240,.96)
+	color: white
+
+.dial
+	display: flex
+	justify-content: center
+
+.dash-container
+	width: 100%
+	height: 100%
+	position: fixed
+	z-index: 9999
+	background: white
+
+.user-container
+	display: flex
+	justify-content: center
+	align-items: center
+	height: inherit
+	width: inherit
+	color: #333
+	font-family: raleway
+	font-size: 28px
+
+.user-inner
+	width: 230px
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-wrap: wrap
+	text-align: center
+	a
+		background: #333
+		padding: 3px 15px
+		margin-top: 15px
+		font-size: 23px
+		color: white
+		text-decoration: none
+		transition: .5s ease
+		border-radius: 3px
+		&:hover
+			transform: rotateY(360deg)
+			background: #a9fd00;
+
+.dash-head
+	height: 50px
+	display: flex
+	align-items: center
+	span.log
+		font-size: 30px
+		font-family: rainbow
+		float: left
+	span.welcome
+		display: flex
+		width: 100%
+		align-items: center
+		text-align: center
+		justify-content: center
+		color: white
+		font-weight: bold
+		font-family: raleway
+	a
+		font-weight: bold
+		font-family: raleway
+
+.dash-color
+	background: #ccc
+
+.admin-panel
+	background: #ccc
+	margin-top: 50px
+	border-radius: 3px
+	min-height: 450px
+	position: relative
+	margin-bottom: 50px
+	overflow: none
+
+.admin-list
+	list-style: none
+	text-align: center
+	color: white
+	margin: 0
+	padding: 0
+	padding-right: 15px
+	border-right: 1px solid #eee
+	font-family: raleway
+	li
+		padding: 15px
+		border-bottom: 1px solid #eee
+		cursor: pointer
+		&:last-child
+			border: none
+			border-bottom: 1px solid #eee
+
+.my-icons
+	font-family: raleway
+	.addnewIcon
+		background: #a9fd00
+		float: left
+		padding: 5px 15px
+		border-radius: 3px
+		margin-top: 15px
+		margin-bottom: 0px
+		color: #333
+		cursor: pointer
+
+.table
+	font-family: raleway
+	margin-top: 15px
+	color: #333
+	th
+		text-align: center
+	tr
+		text-align: center
+		vertical-align: middle
+
+
+.delete
+	text-align: center
+	background: red
+	border-radius: 3px
+	padding: 5px 25px
+	color: white
+	font-family: raleway
+	display: inline-block
+	cursor: pointer
+
+.col-md-12.tbl
+	margin: 0
+	padding: 0
+	padding-right: 15px
+
+.dash-view
+	width: 100%
+	
+	.next-button
+		margin-top: 0px
+		display: flex
+		
+#ic
+	display: none
+
+#ic.active
+	display: block
+
+#cat
+	display: none
+
+#cat.active
+	display: block
+
+.blocker
+	z-index: 99999
+
+#ex1
+	overflow: none
+
+.new-icon-Form
+	button.submit
+		width: 100%
+		border: none
+		margin-top: 10px
+		background-color: #a9fd00
+
+.new-category-Form
+	input
+		width: 100%
+		padding: 5px 15px
+	button.submit
+		width: 100%
+		border: none
+		margin-top: 10px
+		background-color: #a9fd00
+
+.file-name
+	width: 100%
+	margin-top: 0px
+	margin-bottom: 10px
+	padding: 5px 15px
+
+.pagination
+	width: 100%
+	font-family: raleway
+	display: flex
+	justify-content: center
+	li
+		a
+			color: #333
+	li.active
+		a
+			background: #a9fd00
+			color: white
+			border: 1px solid #ccc
+.pageNav
+	justify-content: center
+	align-items: center
+
+.search-wrapper
+	width: 100%
+	height: 500px
+	background: #ccc
+	margin-top: 50px
+	padding: 15px
+	.box
+		border: 2px dashed #eee
+		&:hover
+			border: 2px dashed #333
+	.search-bar
+		width: 100%
+		padding: 5px 15px
+		font-family: raleway
+		font-size: 18px
+		border: none
+		
+
+
+
+@import "media" // Всегда в конце

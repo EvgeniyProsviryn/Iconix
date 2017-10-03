@@ -1,0 +1,116 @@
+<div class="dash-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 dash-color">
+				<div class="dash-head">
+					<span class="log"><span style="color: #a9fd00;">I</span>conix</span>
+					<span class="welcome">welcome {{user}}</span>
+					<a href="" ng-click = 'logoutClick()'>Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="admin-panel">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3">
+							<ul class="admin-list">
+								<li class="icons-active" ng-click = 'iconsActive()'>Add Icons</li>
+								<li class="category-active" ng-click = 'categoryActive()'>Add Category</li>
+							</ul>
+						</div>
+						<div class="col-md-9">
+							<div class="dash-view active" id="ic">
+								<div class="my-icons">
+									<a href="#ex1" rel="modal:open">
+										<div class="addnewIcon">Add New Icon</div>
+									</a>
+								</div>
+								<div class="col-md-12 tbl" ng-init="selectIcon()">
+									<table class="table table-bordered">
+  									  <thead>
+ 									     <tr>
+									        <th>Preview</th>
+ 									       <th>Icon category</th>
+ 									       <th>Delete</th>
+ 									     </tr>
+ 									   </thead>
+ 									   <tbody>
+ 									     <tr ng-repeat="icon in icons | startFrom:(currentPage-1)* pageSize | limitTo: pageSize   track by $index">
+ 									       <td><img src="upload/icons/{{icon.file}}" width="30px" alt=""></td>
+ 									       <td class="align-middle">{{icon.category}}</td>
+ 									       <td><div class="delete" ng-click = "deleteIcon(icon.id)">Delete</div></td>
+ 									     </tr>
+ 								
+ 									   </tbody>
+ 									 </table>
+ 									 <div class="pageNav" paging page="currentPage" page-size="pageSize" total="icons.length" show-prev-next="true"></div>
+								</div>
+
+							</div>
+
+							<div class="dash-view" id="cat">
+								<div class="my-icons">
+									<a href="#ex2" rel="modal:open">
+										<div class="addnewIcon">Add New Category</div>
+									</a>
+								</div>
+								<div class="col-md-12 tbl" ng-init="select()">
+									<table class="table table-bordered">
+  									  <thead>
+ 									     <tr>
+ 									       <th>Category</th>
+ 									       <th>Delete</th>
+ 									     </tr>
+ 									   </thead>
+ 									   <tbody>
+ 									     <tr ng-repeat="cat in cats | startFrom:(currentPageAdd-1)* pageSizeAdd | limitTo: pageSizeAdd   track by $index">
+ 									       <td class="align-middle">{{cat.category_name}}</td>
+ 									       <td><div class="delete" ng-click = "deleteCategory(cat.id)">Delete</div></td>
+ 									     </tr>
+ 									   </tbody>
+ 									 </table>
+ 									 <div class="pageNav" paging page="currentPageAdd" page-size="pageSizeAdd" total="cats.length" show-prev-next="true"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="ex1" class="new-icon-modal" style="display:none;">
+	<form class="new-icon-Form">
+		<span>Select Category:</span>
+		<select name="category" id="category-select" ng-model="categorySelect" require>
+			<option ng-repeat="cat in cats track by $index">
+				{{cat.category_name}}
+			</option>
+		</select>
+		<br>
+		<input type="file" accept="image/*" file-input="files" require>
+		<br>
+		<input type="text" class="file-name" ng-model="icName" placeholder="Name">
+
+		<a href="" rel="modal:close"><button class="submit ok" ng-click="addIcon()">OK</button></a>
+	</form>
+</div>
+
+<div id="ex2" class="new-icon-modal" style="display:none;">
+	<form class="new-category-Form">
+		<input type="text" class="text-category" name="textCategory" placeholder="Category Name" ng-model="categoryName" require="">
+		<input type="file" name="userfile" accept="image/*" file-input="files" require>
+		<a href="" rel="modal:close"><button class="submit ok" ng-click="addCategory()">OK</button></a>
+	</form>
+</div>
+
+
+
+<link rel="stylesheet" href="css/main.min.css">

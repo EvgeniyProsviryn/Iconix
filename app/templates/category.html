@@ -1,0 +1,34 @@
+<div class="dash-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 dash-color">
+				<div class="dash-head">
+					<span class="log"><span style="color: #a9fd00;">I</span>conix</span>
+					<span class="welcome">Category {{catName}}</span>
+					<a href="" ng-click = 'logoutClick()'>Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12" >
+			<div class="search-wrapper">
+				<span class="cat-name"></span>
+				<div class="col-md-2 col-sm-3 col-xs-6" ng-repeat="iconsBy in iconsByCategory | startFrom:(currentPageCategory-1)* pageSizeCategory | limitTo: pageSizeCategory track by $index">
+					<a href="upload/icons/{{iconsBy.file}}" download target="_blank">
+						<div class="box">
+							<img src="upload/icons/{{iconsBy.file}}" width="100px" alt="employee">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12 navigation">
+					<div class="pageNav" paging page="currentPageCategory" page-size="pageSizeCategory" total="iconsByCategory.length" show-prev-next="true"></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>

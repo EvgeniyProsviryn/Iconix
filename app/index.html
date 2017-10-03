@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/app/">
+
+	<title>Iconix AngularJs</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#000">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#000">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#000">
+
+	<style>body { opacity: 0; overflow-x: hidden; } html { background-color: #fff; }</style>
+
+</head>
+
+<body ng-app="iconix">
+	<section class="dash-container" ng-view></section>
+	<div class="wrapper" id="scopeWrapper" ng-controller="home">
+	<section class="header">
+		<div class="header-nav">
+			<div class="logo">
+				<a href="/"><span style="color: #a9fd00;">I</span>conix</a>
+			</div>
+			<div class="login">
+				<a class="popup-with-form" magnific-Form href="#test-form">
+					<img src="img/video-call.svg" width = "30px" alt="login">
+				</a>
+			</div>
+		</div>
+		<div class="cntr-text ">
+			<div class="iconix-text">
+				<span style="color: #a9fd00;">{{icons.length}}</span> vector icons and <span style="color: #a9fd00;">8</span> categories
+			</div>
+			<input type="text" placeholder="Search icons" class="search" ng-click="search()">
+			<img src="img/magnifier.svg" width="30px" alt="search" class="search-logo">
+		</div>
+		
+		<form id="test-form" class="mfp-hide white-popup-block">
+			<h1>Login</h1>
+			<fieldset style="border:0;" ng-controller="loginCtrl">
+				<ol>
+					<li>
+						<input id="name" name="name" type="text" placeholder="Username" required="" ng-model="username">
+					</li>
+					<li>
+						<input id="password" name="email" type="password" placeholder="Password" required="" ng-model="password">
+					</li>
+					<li>
+						<button class="submit" ng-click="login()">Sign in</button>
+						<a class="popup-with-form" magnific-Form href="#test-form2">
+							<input class="register" type="button" value="Register">
+						</a>
+					</li>
+				</ol>
+			</fieldset>
+		</form>
+
+		<form id="test-form2" class="mfp-hide white-popup-block">
+			<h1>Register</h1>
+			<fieldset style="border:0;" ng-controller="registerCtrl">
+				<ol>
+					<li>
+						<input id="first" name="first" type="text" placeholder="First Name" ng-model="firstName" required="">
+					</li>
+					<li>
+						<input id="last" name="last" type="text" placeholder="Last Name" ng-model="lastName" required="">
+					</li>
+					<li>
+						<input id="name" name="name" type="text" placeholder="Username" ng-model="userName" required="">
+					</li>
+					<li>
+						<input id="password" name="email" type="password" placeholder="Password" ng-model="passWord" required="">
+					</li>
+					<li>
+						<input id="email" name="email" type="email" placeholder="email" ng-model="email" required="">
+					</li>
+					<li>
+						<button class="submit" ng-click="register()">Register</button>
+					</li>
+				</ol>
+			</fieldset>
+		</form>
+	</section>
+
+	<section class="content" ng-init="selectIcon()">
+		<div class="container latest">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="content-title"><span style="color: #a9fd00;">L</span>atest icons</div>
+				</div>
+				<div class="col-md-2 col-sm-3 col-xs-6 " ng-repeat="icon in icons | startFrom:(currentPageLatest-1)* pageSizeLatest | limitTo: pageSizeLatest  track by $index">
+					<a class="popup-with-zoom-anim" magnific-Zoom href="#small-dialog" ng-click="getIconClick(icon.id)">
+						<div class="box" ng-click="likedOrNot(icon.id)">
+							<div class="inner-box">S</div>
+							<img src="upload/icons/{{icon.file}}" width="100px" alt="employee">
+						</div>
+					</a>
+				</div>
+				
+				<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+					<div class="dialog-box">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 dial">
+									<div class="dialog-contain">
+										<div class="dialog-svg">
+											<img src="upload/icons/{{iconsById.file}}" width="150px" alt="employee">
+										</div>
+										<div class="dialog-collect">
+											<div class="addto" ng-class="{'unactive': liked===true}" ng-click="like(iconsById.id)">+ Like it</div>
+										</div>
+										<a href="upload/icons/{{iconsById.file}}" download target="_self">
+											<div class="dialog-download">
+												<div class="downl">Download</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12 col-sm-12 col-xs-12 navigation">
+					<div class="pageNav" paging page="currentPageLatest" page-size="pageSizeLatest" total="icons.length" show-prev-next="true"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="categories" ng-init="select()">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="category-text"><span style="color: #a9fd00;">C</span>ategories</div>
+				</div>
+				<div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="cat in cats | limitTo: pageSizeCat  track by $index">
+					<a href="">
+						<div class="category-box" ng-click="catPage(cat.category_name)">
+							<img src="upload/{{cat.image}}" width="70px" alt="employee">
+							<div class="catbox-inner">{{cat.category_name}}</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="most-popular">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="popular-text"><span style="color: #a9fd00;">M</span>ost popular icons</div>
+				</div>
+				<div class="col-md-2 col-sm-3 col-xs-6" ng-repeat="icon in icons | orderBy: '-rating' | startFrom:(currentPagePopular-1)* pageSizePopular | limitTo: pageSizePopular  track by $index">
+					<a class="popup-with-zoom-anim" magnific-Zoom href="#small-dialog" ng-click="getIconClick(icon.id)">
+						<div class="box" ng-click="likedOrNot(icon.id)">
+							<div class="inner-box">S</div>
+							<img src="upload/icons/{{icon.file}}" width="100px" alt="employee">
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-md-12 col-sm-12 col-xs-12 navigation">
+					<div class="pageNav" paging page="currentPagePopular" page-size="pageSizePopular" total="icons.length" show-prev-next="true"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="footer">	
+		<div class="footer-content">
+			<div class="logo"><span style="color: #a9fd00;">I</span>conix</div>
+			<a href=""><img src="img/google-plus.svg" width="30px" alt=""></a>
+			<a href=""><img src="img/twitter.svg" width="30px" alt=""></a>
+			<a href=""><img src="img/pinterest.svg" width="30px" alt=""></a>
+			<span class="copy">Iconix is a project by Evgeniy Prosviryn</span>
+		</div>			
+	</section>
+	</div>
+	
+	<link rel="stylesheet" href="css/main.min.css">
+
+	<script src="js/angular/angular.min.js"></script>
+	<script src="js/angular/angular-route.js"></script>
+	<script src="js/scripts.min.js"></script>
+	<script src="libs/AngularPaging/AngularPaging/dist/paging.min.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="js/controllers.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<div class="dash-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 dash-color">
+				<div class="dash-head">
+					<span class="log"><span style="color: #a9fd00;">I</span>conix</span>
+					<span class="welcome">Search</span>
+					<a href="" ng-click = 'logoutClick()'>Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" ng-init="selectIcon()">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="search-wrapper">
+				<input type="text" class="search-bar" placeholder="search" ng-model="search">
+				<div class="col-md-2 col-sm-3 col-xs-6" ng-repeat="icon in filtered = icons | filter: search | startFrom:(currentPageSearch-1)* pageSizeSearch | limitTo: pageSizeSearch  track by $index">
+					<a href="upload/icons/{{icon.file}}" download target="_blank">
+						<div class="box">
+							<img src="upload/icons/{{icon.file}}" width="100px" alt="employee">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12 navigation">
+					<div class="pageNav" paging page="currentPageSearch" page-size="pageSizeSearch" total="total" show-prev-next="true"></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
